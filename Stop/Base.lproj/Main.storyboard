@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pNN-cp-hnb">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Traffic Light View Controller-->
+        <scene sceneID="1Zl-tS-OFL">
+            <objects>
+                <viewController id="pNN-cp-hnb" customClass="TrafficLightViewController" customModule="Stop" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XeY-Ov-wpT"/>
+                        <viewControllerLayoutGuide type="bottom" id="e5a-3a-fKQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wYL-ux-cN6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redlight" translatesAutoresizingMaskIntoConstraints="NO" id="n20-4c-afd">
+                                <rect key="frame" x="16" y="20" width="288" height="460"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Y97-pG-yiD" appends="YES" id="C3L-Gf-wte"/>
+                                </connections>
+                            </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDH-dr-qzs">
+                                <rect key="frame" x="238" y="424" width="66" height="48"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="n20-4c-afd" secondAttribute="trailing" id="4HX-fC-mYL"/>
+                            <constraint firstItem="e5a-3a-fKQ" firstAttribute="top" secondItem="n20-4c-afd" secondAttribute="bottom" id="5Up-hx-KAQ"/>
+                            <constraint firstItem="sDH-dr-qzs" firstAttribute="trailing" secondItem="wYL-ux-cN6" secondAttribute="trailingMargin" id="e04-mL-Mmb"/>
+                            <constraint firstItem="n20-4c-afd" firstAttribute="leading" secondItem="wYL-ux-cN6" secondAttribute="leadingMargin" id="iyd-RU-CAw"/>
+                            <constraint firstItem="e5a-3a-fKQ" firstAttribute="top" secondItem="sDH-dr-qzs" secondAttribute="bottom" constant="8" id="oGb-Zs-EVQ"/>
+                            <constraint firstItem="n20-4c-afd" firstAttribute="top" secondItem="XeY-Ov-wpT" secondAttribute="bottom" id="ql0-M5-sxj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="countDownLabel" destination="sDH-dr-qzs" id="rja-cm-zSf"/>
+                        <outlet property="trafficLightImageView" destination="n20-4c-afd" id="PeH-Na-qPk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sZr-p5-vhG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Y97-pG-yiD">
+                    <connections>
+                        <action selector="changeLight:" destination="pNN-cp-hnb" id="3vz-tl-BoG"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1188.75" y="40"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="redlight" width="358" height="448"/>
+    </resources>
+</document>

@@ -9,54 +9,56 @@
 import UIKit
 
 class TrafficLightViewController: UIViewController {
-
-    var timer = Timer()
-    var counter = 10
-
+    
     @IBOutlet weak var trafficLightImageView: UIImageView!
     @IBOutlet weak var countDownLabel: UILabel!
-
+    
+    var timer = Timer()
+    
+    var counter: Int = 10
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        countDownLabel.text = String(counter)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func changeLight(_ sender: UITapGestureRecognizer) {
-	        trafficLightImageView.image = UIImage(named:"amberlight")
+    func resetView() {
+        print("resetView called")
+        if timer.isValid {
+            timer.invalidate()
+        }
+        counter = 10
+        trafficLightImageView.image = UIImage(named: "redlight")
+        countDownLabel.isHidden = true
+    }
+    
+    @IBAction func resetView(_ sender: UIBarButtonItem) {
+        resetView()
+    }
+
+    @IBAction func start(_ sender: UITapGestureRecognizer) {
+        if (timer.isValid) {return}
+        trafficLightImageView.image = UIImage(named: "amberlight")
         startCountDown()
+        
     }
     
     func startCountDown() {
-        countDownLabel.isHidden = false
+        counter = 10
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TrafficLightViewController.updateCounter), userInfo: nil, repeats: true)
     }
-
+    
     func updateCounter() {
+        countDownLabel.isHidden = false
         if counter > 0 {
+            countDownLabel.text = String(counter)
             counter-=1
-            countDownLabel.text = "\(counter)"
-        } else {
+        } else if counter == 0 {
             timer.invalidate()
+            trafficLightImageView.image = UIImage(named: "greenlight")
             countDownLabel.isHidden = true
-            counter=10
-            countDownLabel.text = "\(counter)"
-            trafficLightImageView.image = UIImage(named:"greenlight")
-            delayWithSeconds(5, completion: {
-                self.trafficLightImageView.image = UIImage(named:"redlight")
-            })
         }
     }
 
-    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> ()) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            completion()
-        }
-    }
 
     /*
     // MARK: - Navigation
